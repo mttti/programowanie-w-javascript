@@ -1,34 +1,35 @@
-const numberOne =document.querySelector('#number1');
-const numberTwo =document.querySelector("#number2");
-const numberThree =document.querySelector("#number3");
-
 const values = document.querySelector("#values");
-
 const addButton = document.querySelector("#add");
 const deleteButton = document.querySelector("#delete");
-const submitButton = document.querySelector("#aa");
-
+const submitButton = document.querySelector("#calculate");
 const sumP = document.querySelector("#sum");
 const avgP = document.getElementById("avg");
 const minP = document.getElementById("min");
 const maxP = document.getElementById("max");
 
-submitButton.addEventListener('click',()=>{
-    let no1Value = parseInt(numberOne.value);
-    let no2Value = parseInt(numberTwo.value);
-    let no3Value = parseInt(numberThree.value);
-    
-    let sum = no1Value+no2Value+no3Value;
+submitButton.addEventListener('click', () => {
+    let sum = 0;
+    let inputs = Array.from(document.querySelectorAll("input"));
+    let numbers = [];
 
-    sumP.appendChild(document.createTextNode(sum));
-    avgP.appendChild(document.createTextNode(sum/3))
-    minP.appendChild(document.createTextNode(Math.min(no1Value,no2Value,no3Value)))
-    maxP.appendChild(document.createTextNode(Math.max(no1Value,no2Value,no3Value)))
-    //minP.innerHTML = Math.min(no1Value,no2Value,no3Value);
-    //maxP.innerHTML = Math.max(no1Value,no2Value,no3Value);
+    
+
+    for (let index = 0; index < inputs.length; index++) {
+        if (isNaN(inputs[index].value || typeof inputs[index].value === string )) {        
+            return;
+        }
+        sum += parseInt(inputs[index].value);
+        numbers[index] = parseInt(inputs[index].value);
+    }
+
+    sumP.innerHTML = `Suma: ${sum}`;
+    avgP.innerHTML = `Średnia: ${sum / inputs.length}`;
+    minP.innerHTML = `Min: ${Math.min(...numbers)}`;
+    maxP.innerHTML = `Max: ${Math.max(...numbers)}`;
+
 })
 
-addButton.addEventListener('click',()=>{
+addButton.addEventListener('click', ()=>{
     let input = document.createElement('input');
     let id = values.childElementCount+1;
     input.type="text";
