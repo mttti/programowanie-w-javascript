@@ -1,30 +1,76 @@
 // const images = Array.from(document.getElementsByTagName('img'));
-const images = document.querySelectorAll('img');
-const stopButton = document.querySelector("#stopButton")
+const images = document.querySelectorAll(".img");
+const stopButton = document.querySelector("#stopButton");
+const nextButton = document.querySelector("#lewo");
+const prevButton = document.querySelector("#prawo");
 
+//index = images.length - 1;
 
-index=0;
-const slider = setInterval(() => {
-    if(index==images.length){
-        index=0;
-        images.forEach(element => {
-            element.style.display="none"
-        });
+let i = 1;
+setInterval(() => {
+    swipeLeft();
+}, 4000);
+function swipeLeft() {
+    if (i === 5) {
+        i = 1;
+        images[0].style.right = "0px";
+        images[0].style.zIndex = "1";
+        images[1].style.right = "-300px";
+        images[1].style.zIndex = "0";
+        images[2].style.right = "-300px";
+        images[2].style.zIndex = "0";
+        images[3].style.right = "-300px";
+        images[3].style.zIndex = "0";
+        images[4].style.right = "300px";
+        images[4].style.zIndex = "0";
+        return;
     }
-    images[index].style.display="block";
-    index++;
-    console.log(index)
-}, 1000);
+    if (i === 4) {
+        images[0].style.right = "-300px";
+        images[0].style.zIndex = "-1";
+    }
+    if (i === 1) {
+        images[4].style.zIndex = "-1";
+        images[4].style.right = "-300px";
+    }
+    console.log(`swipe left: ${i}`);
 
-images.addEventListener('mouseover', ()=>{
-    clearInterval(slider);
-})
+    if (i > 0) {
+        images[i].style.right = "0px";
+        images[i].zIndex = "1";
+        images[i - 1].style.right = "300px";
+    } else {
+        images[i].style.right = "0px";
+    }
+    i++;
+}
 
-// stopButton.addEventListener('click',()=>{
-//     clearInterval(slider);
-//     //document.onclick = second;
-// })
+function swipeRight() {
+    console.log(`swipe right: ${i}`);
+    if (i == 5) {
+        leftButton.disabled = false;
+    }
 
-// function second(){
-//     slider.setInterval(1000)
-// }
+    images[i - 1].style.right = "-300px";
+    if (i > 1) images[i - 2].style.right = "0";
+    i--;
+}
+
+nextButton.addEventListener("click", swipeLeft);
+
+prevButton.addEventListener("click", swipeRight);
+stopButton.addEventListener("click", slide);
+function slide() {
+    setInterval(() => {
+        // try {
+        //     swipeLeft();
+        // } catch (error) {
+        //     swipeRight();
+        // }
+        if (i === 1) {
+            swipeLeft();
+        } else {
+            //swipeRight();
+        }
+    }, 1000);
+}
