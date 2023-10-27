@@ -1,15 +1,25 @@
-// const images = Array.from(document.getElementsByTagName('img'));
 const images = document.querySelectorAll(".img");
 const stopButton = document.querySelector("#stopButton");
+const startButton = document.querySelector("#startButton");
 const nextButton = document.querySelector("#lewo");
 const prevButton = document.querySelector("#prawo");
 
-//index = images.length - 1;
+const oneButton = document.querySelector("#one");
+const twoButton = document.querySelector("#two");
+const threeButton = document.querySelector("#three");
+const fourButton = document.querySelector("#four");
+const fiveButton = document.querySelector("#five");
+
+let slideInterval;
 
 let i = 1;
-setInterval(() => {
-    swipeLeft();
-}, 4000);
+function interval() {
+    slideInterval = setInterval(() => {
+        swipeLeft();
+    }, 4000);
+    console.log("Invertal started");
+}
+interval();
 function swipeLeft() {
     if (i === 5) {
         i = 1;
@@ -47,30 +57,22 @@ function swipeLeft() {
 
 function swipeRight() {
     console.log(`swipe right: ${i}`);
-    if (i == 5) {
-        leftButton.disabled = false;
-    }
-
     images[i - 1].style.right = "-300px";
-    if (i > 1) images[i - 2].style.right = "0";
+    if (i > 1) {
+        images[i - 2].style.right = "0";
+    }
     i--;
 }
 
 nextButton.addEventListener("click", swipeLeft);
-
 prevButton.addEventListener("click", swipeRight);
-stopButton.addEventListener("click", slide);
-function slide() {
-    setInterval(() => {
-        // try {
-        //     swipeLeft();
-        // } catch (error) {
-        //     swipeRight();
-        // }
-        if (i === 1) {
-            swipeLeft();
-        } else {
-            //swipeRight();
-        }
-    }, 1000);
-}
+oneButton.addEventListener("click", () => {
+    i = 1;
+    console.log(`ustawiono i na ${i}`);
+});
+
+startButton.addEventListener("click", interval);
+stopButton.addEventListener("click", () => {
+    clearInterval(slideInterval);
+    console.log("interval stopped");
+});
