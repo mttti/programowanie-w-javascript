@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lab03</title>
-</head>
-<body>
-    <audio src="sounds/boom.wav" type="audio/wav"controls id="s1"></audio>
-    <audio src="sounds/hihat.wav" controls id="s2"></audio>
-    <button type="button" id="play">PLAY</button>
-    <button type="button" id="startRecord">START RECORDING</button>
-    <button type="button" id="stopRecord">STOP RECORDING</button>
-    
-    <script src="main.js"></script>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>lab03</title>
+    </head>
+    <body>
+        <audio src="sounds/boom.wav" controls id="s1"></audio>
+        <audio src="sounds/hihat.wav" controls id="s2"></audio>
+        <audio src="sounds/clap.wav" controls id="s3"></audio>
+        <audio src="sounds/kick.wav" controls id="s4"></audio>
+        <audio src="sounds/ride.wav" controls id="s5"></audio>
+        <audio src="sounds/snare.wav" controls id="s6"></audio>
+        <audio src="sounds/tink.wav" controls id="s7"></audio>
+        <audio src="sounds/tom.wav" controls id="s8"></audio>
+        <audio src="sounds/openhat.wav" controls id="s9"></audio>
+        <select id="selectCanal">
+            Select canal
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <button type="button" id="play">PLAY</button>
+        <!-- <input type="checkbox" id="playAll" value="=Play all" /> -->
+        <button type="button" id="playAll">PLAY ALL</button>
+        <button type="button" id="startRecord">START RECORDING</button>
+        <button type="button" id="stopRecord">STOP RECORDING</button>
+
+        <script src="main.js"></script>
+    </body>
 </html>

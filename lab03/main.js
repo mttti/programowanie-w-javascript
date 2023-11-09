@@ -1,78 +1,89 @@
-document.addEventListener('keypress', onKeyPress)
+document.addEventListener("keypress", onKeyPress);
 const startRecordButton = document.querySelector("#startRecord");
 const stopRecordButton = document.querySelector("#stopRecord");
 const playButton = document.querySelector("#play");
+const playAllButton = document.querySelector("#playAll");
 
 let isRecording = false;
 
 let sounds = [];
 
 const KeyToSound = {
-    'a': document.querySelector('#s1'),
-    's': document.querySelector('#s2')
-}
+    a: document.querySelector("#s1"),
+    s: document.querySelector("#s2"),
+    d: document.querySelector("#s3"),
+    f: document.querySelector("#s4"),
+    g: document.querySelector("#s5"),
+    h: document.querySelector("#s6"),
+    j: document.querySelector("#s7"),
+    k: document.querySelector("#s8"),
+    l: document.querySelector("#s9"),
+};
 
 function onKeyPress(event) {
-    const sound = KeyToSound[event.key]
+    const sound = KeyToSound[event.key];
+    if (sound === undefined) return;
+
     let obiekt;
-    if(isRecording){
-       // if(sounds.length===0){
-            obiekt = {
-                sound:sound,
-                time:event.timeStamp,
-                canal: 1
-            }
-        // }else{
-        //     obiekt = {
-        //         sound:sound,
-        //         time: +event.timeStamp-+sounds[sounds.length-1].time,
-        //         canal: 1
-        //     } 
-        // }
-        
+    if (isRecording) {
+        obiekt = {
+            sound: sound,
+            time: event.timeStamp,
+            canal: selectedCanal(),
+        };
         sounds.push(obiekt);
     }
-    console.log(event.timeStamp)
-    playSound(sound)
+    console.log(event.timeStamp);
+    playSound(sound);
 }
 function playSound(sound) {
-    sound.currentTime = 0
-    sound.play()
+    sound.currentTime = 0;
+    sound.play();
 }
 
-function play(){
-    // console.log("Playing canal 1");
-    // for (const sound of sounds) {
-    //     setTimeout(playSound(sound.sound), 1000)
-    // }
+function selectedCanal() {
+    return +document.querySelector("#selectCanal").value;
+}
 
-    for (let i = 0; i < sounds.length; i++) {
-        const sound = sounds[i];
-        if (i == 0) playSound(sound.sound);
-        else {
-            setTimeout(() => {
-                playSound(sound.sound);
-                try{console.log(`czas: ${sound.time - sound[i-1].time}`)}
-                catch(error){
-                    console.log("error "+i)
-                }
-            }, 1000);//+sound.time-+sound[i-1].time);
-        }
-        
+function startPlaying() {
+    const canal = selectedCanal();
+    play(canal);
+}
+function play(canal) {
+    const filteredSounds = sounds.filter((cnl) => cnl.canal === canal);
+
+    if (filteredSounds.length === 0) {
+        return;
     }
-    
-    console.log(sounds);
+    console.log(`Playing canal ${canal}`);
+
+    playSound(filteredSounds[0].sound);
+    loop(1);
+    function loop(i) {
+        setTimeout(() => {
+            playSound(filteredSounds[i].sound);
+            if (i < filteredSounds.length - 1) {
+                loop(i + 1);
+            }
+        }, filteredSounds[i].time - filteredSounds[i - 1].time);
+    }
 }
 
-startRecordButton.addEventListener("click", ()=>{
-    isRecording=true;
-    sounds=[];
-    console.log("Started recording...")
+function playAll() {
+    for (let i = 1; i < 5; i++) {
+        play(i);
+    }
+}
+
+startRecordButton.addEventListener("click", () => {
+    isRecording = true;
+    console.log(`Started recording canal ${selectedCanal()}`);
 });
 
-stopRecordButton.addEventListener("click", ()=>{
-    isRecording=false;
-    console.log("Stopped recording...")
+stopRecordButton.addEventListener("click", () => {
+    isRecording = false;
+    console.log(`Stopped recording canal ${selectedCanal()}`);
 });
 
-playButton.addEventListener("click", play)
+playButton.addEventListener("click", startPlaying);
+playAllButton.addEventListener("click", playAll);
