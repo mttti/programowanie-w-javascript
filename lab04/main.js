@@ -4,8 +4,7 @@ const defaultColor = "yellow";
 
 
 function listNotes(){
-    for (let index = 0; index < localStorage.length; index++) {
-        
+    for (let index = 0; index < localStorage.length; index++) {      
         const note = JSON.parse(localStorage.getItem(index));
         createNote(note);
     }
@@ -27,7 +26,7 @@ function createNote(note){
     if(note.isPinned){
         allNotes.insertBefore(newNote, allNotes.firstChild)
     }else{
-            allNotes.appendChild(newNote);
+        allNotes.appendChild(newNote);
     }
 }
 
@@ -45,7 +44,6 @@ function addNote(){
 
     const dateNow = new Date();
     const date = `${dateNow.getDay()}/${dateNow.getMonth()}/${dateNow.getFullYear()} ${dateNow.getHours()}:${dateNow.getMinutes()}`;
-
 
     const note ={
         id: id,
