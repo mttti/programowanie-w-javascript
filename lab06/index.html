@@ -1,41 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lab06</title>
-    <style>
-        #plansza{
-            width: 400px;
-            height: 400px;
-            background-color: red;
-            padding: 10px;
-            position: relative;
-        }
-        #dolek{
-            border-radius: 50%;
-            width: 70px;
-            height: 70px;
-            background-color: black;
-            z-index: 0;
-            position: absolute;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>lab06</title>
+        <style>
+            body {
+                background-color: rgba(55, 55, 55, 0.733);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-top: 300px;
+            }
+            #plansza {
+                width: 400px;
+                height: 400px;
+                background-color: RGB(21, 88, 67);
+                padding: 10px;
+                position: relative;
+                border: 5px rgb(65, 2, 2) solid;
+            }
+            #dolek {
+                border-radius: 50%;
+                width: 70px;
+                height: 70px;
+                background-color: black;
+                z-index: 0;
+                position: absolute;
+            }
 
-        #pilka{
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
-            background-color: green;
-            position: absolute;
-            z-index: 1;
-        }
-    </style>
-</head>
-<body>
-    <div id="plansza">
-        <div id="dolek"></div>
-        <div id="pilka"></div>
-    </div>
-    <script src="main.js"></script>
-</body>
+            #pilka {
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                margin-top: 180px;
+                margin-left: 180px;
+                background-color: rgb(0, 34, 255);
+                position: absolute;
+                z-index: 1;
+                border: 2px solid white;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="plansza">
+            <div id="dolek"></div>
+            <div id="pilka"></div>
+        </div>
+        <script src="main.js"></script>
+    </body>
 </html>

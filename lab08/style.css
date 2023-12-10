@@ -1,0 +1,94 @@
+:root {
+    --bg-color: #312f2f;
+    --header-font-color: #ffffff;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: "Comfortaa", sans-serif;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header h1 {
+    color: var(--header-font-color);
+    font-size: 3.5rem;
+}
+
+header input {
+    background-color: var(--bg-color);
+    color: var(--header-font-color);
+    text-align: center;
+    border-radius: 5px;
+    border: 3px solid white;
+    outline: none;
+    width: 400px;
+    height: 50px;
+    font-size: 35px;
+}
+
+header button {
+    background-color: var(--bg-color);
+    border: 3px solid white;
+    margin: 30px 0;
+    width: 150px;
+    height: 40px;
+    color: var(--header-font-color);
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+header button:hover {
+    background-color: var(--header-font-color);
+    color: var(--bg-color);
+}
+
+#main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.info {
+    width: 400px;
+    height: 400px;
+    border: white 3px solid;
+    border-radius: 5px;
+    color: var(--header-font-color);
+    text-align: center;
+    font-size: 1.3rem;
+    margin: 5px;
+    transition-duration: 500ms;
+    position: relative;
+}
+
+.time {
+    font-size: 0.7rem;
+    position: absolute;
+    left: 10px;
+    bottom: 5px;
+}
+
+.delete {
+    font-size: 0.7rem;
+    position: absolute;
+    right: 20px;
+    bottom: 5px;
+}
+.delete:hover {
+    cursor: pointer;
+}
+
+.info:hover {
+    background-color: var(--header-font-color);
+    color: var(--bg-color);
+    transition-duration: 500ms;
+}
