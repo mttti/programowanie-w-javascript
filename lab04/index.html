@@ -1,60 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lab04</title>
-    <style>
-        #addNote{
-            display: flex;
-            /* justify-content: center; */
-            flex-direction: column;
-            align-items: center;
-            width: 90vw;
-            height: 50vh;
-        }
-        #notes{
-            display: flex;
-            /* justify-content: center; */
-            flex-direction: column;
-            align-items: center;
-            width: 90vw;
-            height: 50vh;
-            padding-bottom: 50px;
-        }
-        .note{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px;
-            border-radius: 5px;
-            min-height: 200px;
-            width: 400px;
-            margin-top: 10px;
-        }
-        .note p{
-            text-wrap: wrap;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>lab04</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <!-- <div id="addNote"> -->
+        <header>
+            <h2>Tytuł:</h2>
+            <input type="text" id="title" />
+            <h2>Treść notatki:</h2>
+            <textarea id="content" rows="4" cols="50"></textarea>
 
-        
-    </style>
-</head>
-<body>
-    <div id="addNote">Tytuł:
-    <input type="text" id="title">
-    Treść notatki:
-    <textarea id = "content" rows="4" cols="50"></textarea>
-    Kolor notatki:
-    <input type="text" id="noteColor">
-    Przypnij notatkę:
-    <input type="checkbox" id="pin">
+            <h2>Dodaj tagi po przecinku</h2>
+            <input type="text" id="tagsInput" />
+            <h2>Kolor notatki:</h2>
+            <input type="text" id="noteColor" />
+            <h2>Przypnij notatkę:</h2>
+            <input type="checkbox" id="pin" />
+            <button type="button" id="addNoteButton">Dodaj</button>
+            <button type="button" id="deleteAllNotes">
+                Usuń wszystkie notatki
+            </button>
 
-    <button type="button" id="addNoteButton">Dodaj</button>
-    <button type="button" id="deleteAllNotes">Usun wszystkie notatki</button>
-</div>
-<div id="notes">
-    <!-- <div class="note" style="background-color: red;"></div> -->
-</div>
-    <script src="main.js"></script>
-</body>
+            <h2>Wyszukaj notatki po tagu</h2>
+            <input type="text" id="selectByTag" />
+            <div id="searchButtons">
+                <button type="button" id="selectByTagButton">Wyszukaj</button>
+                <button type="button" id="selectAll">Wyczyść filtry</button>
+            </div>
+        </header>
+        <!-- </div> -->
+        <div id="notes">
+            <!-- <div class="note" style="background-color: red;"></div> -->
+        </div>
+        <script src="main.js"></script>
+    </body>
 </html>
