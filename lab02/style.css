@@ -17,26 +17,5 @@ body {
 
 img {
     position: absolute;
-    /* left: 40vw; */
-    right: -300px;
-    /* display: block; */
-    /* overflow: hidden; */
     transition-duration: 500ms;
-    /* display: none; */
-    transition-property: right;
-    animation-timing-function: linear;
-}
-img:first-child {
-    right: 0;
-    display: block;
-
-    z-index: 1;
-}
-@keyframes pociag-w-lewo {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-2000px);
-    }
 }
