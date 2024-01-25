@@ -12,69 +12,67 @@ const fiveButton = document.querySelector("#five");
 let slideInterval;
 let slideNumber = 0;
 
-nextButton.addEventListener("click", () => {
-    clearInterval(interval);
-    start((slideNumber += slideNumber < 4 ? 1 : 0));
-});
-prevButton.addEventListener("click", () => {
-    clearInterval(interval);
-    start((slideNumber += slideNumber > 0 ? -2 : 0));
-});
-oneButton.addEventListener("click", () => {
-    clearInterval(interval);
-    start(0);
-});
-twoButton.addEventListener("click", () => {
-    clearInterval(interval);
-    start(1);
-});
-threeButton.addEventListener("click", () => {
-    clearInterval(interval);
-    start(2);
-});
-fourButton.addEventListener("click", () => {
-    clearInterval(interval);
-    start(3);
-});
-fiveButton.addEventListener("click", () => {
-    clearInterval(interval);
-    start(4);
+images.forEach((image, index) => {
+    image.style.left = index * 100 + "%";
 });
 
-let interval;
-
-function start(i = 0) {
-    console.log(slideNumber);
-    slideNumber = i;
-    interval = setInterval(() => {
-        slide(slideNumber);
-        if (slideNumber === 4) {
-            slideNumber = 0;
-        } else {
-            slideNumber++;
-        }
-    }, 1000);
+function slide() {
+    images.forEach((image) => {
+        image.style.transform = `translateX(-${slideNumber * 100}%)`;
+    });
 }
+
+prevButton.addEventListener("click", () => {
+    slideNumber--;
+    if (slideNumber < 0) {
+        slideNumber = images.length - 1;
+    }
+    slide();
+});
+
+nextButton.addEventListener("click", () => {
+    slideNumber++;
+    if (slideNumber > images.length - 1) {
+        slideNumber = 0;
+    }
+    slide();
+});
 
 start();
 
-function slide(n) {
-    for (let i = 0; i < images.length; i++) {
-        if (i > n) {
-            images[i].style.right = "-300px";
+function start() {
+    slideInterval = setInterval(() => {
+        slideNumber++;
+        if (slideNumber > images.length - 1) {
+            slideNumber = 0;
         }
-        if (i < n) {
-            images[i].style.right = "300px";
-        }
-
-        if (n === 4 && i < 3) {
-            images[i].style.display = "none";
-
-            images[i].style.right = "-300px";
-        }
-    }
-    images[n].style.display = "block";
-    setTimeout(() => {
-        images[n].style.right = "0px";
-    }, 1);
+        slide();
+    }, 2000);
 }
+
+oneButton.addEventListener("click", () => {
+    clearInterval(slideInterval);
+    slideNumber = -1;
+    start();
+});
+twoButton.addEventListener("click", () => {
+    clearInterval(slideInterval);
+    slideNumber = 0;
+    start();
+});
+threeButton.addEventListener("click", () => {
+    clearInterval(slideInterval);
+    slideNumber = 1;
+    start();
+});
+fourButton.addEventListener("click", () => {
+    clearInterval(slideInterval);
+    slideNumber = 2;
+    start();
+});
+
+fiveButton.addEventListener("click", () => {
+    clearInterval(slideInterval);
+    slideNumber = 3;
+    start();
+});
