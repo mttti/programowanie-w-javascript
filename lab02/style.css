@@ -1,3 +1,7 @@
+body {
+    background-color: #abab;
+}
+
 #slider {
     display: flex;
     justify-content: center;
@@ -15,15 +19,18 @@ img {
     position: absolute;
     /* left: 40vw; */
     right: -300px;
-    display: block;
+    /* display: block; */
     /* overflow: hidden; */
     transition-duration: 500ms;
+    /* display: none; */
     transition-property: right;
     animation-timing-function: linear;
 }
 img:first-child {
     right: 0;
-    /* z-index: 1; */
+    display: block;
+
+    z-index: 1;
 }
 @keyframes pociag-w-lewo {
     0% {
