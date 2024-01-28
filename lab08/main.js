@@ -1,4 +1,4 @@
-const API_KEY = "f44eef0ba916c40deac3b3810745abaa";
+const API_KEY = "yourapikey";
 
 const addCityButton = document.querySelector("#findCity");
 const deleteInfoButton = document.querySelectorAll(".delete");
